@@ -77,22 +77,24 @@ function buildAddOn(e) {
   }
 
   section
-    .addWidget(CardService.newTextInput().setFieldName("company").setTitle("Company").setValue(formValues.company))
-    .addWidget(CardService.newTextInput().setFieldName("role").setTitle("Role").setValue(formValues.role))
-    .addWidget(CardService.newTextInput().setFieldName("source").setTitle("Source").setValue(formValues.source))
+    .addWidget(CardService.newTextInput().setFieldName("company").setTitle("Company").setValue(safeString(formValues.company)))
+    .addWidget(CardService.newTextInput().setFieldName("role").setTitle("Role").setValue(safeString(formValues.role)))
+    .addWidget(CardService.newTextInput().setFieldName("source").setTitle("Source").setValue(safeString(formValues.source)))
     
-    .addWidget(CardService.newTextInput().setFieldName("status").setTitle("Status").setValue(formValues.status))
-    // Hidden-ish field for link
-    .addWidget(CardService.newTextInput().setFieldName("email_link").setTitle("Email Link (ID)").setValue(emailLink))
+    .addWidget(CardService.newTextInput().setFieldName("status").setTitle("Status").setValue(safeString(formValues.status)))
+    
+    .addWidget(CardService.newTextInput().setFieldName("email_link").setTitle("Email Link (ID)").setValue(safeString(emailLink)))
 
-    .addWidget(CardService.newTextInput().setFieldName("next_action").setTitle("Next Action").setValue(formValues.next_action))
-    .addWidget(CardService.newTextInput().setFieldName("deadline").setTitle("Deadline").setValue(formValues.deadline))
+    .addWidget(CardService.newTextInput().setFieldName("next_action").setTitle("Next Action").setValue(safeString(formValues.next_action)))
     
-    .addWidget(CardService.newTextInput().setFieldName("recruiter").setTitle("Recruiter Email").setValue(formValues.recruiter))
-    .addWidget(CardService.newTextInput().setFieldName("jd_link").setTitle("JD Link").setValue(formValues.jd_link))
-    .addWidget(CardService.newTextInput().setFieldName("resume").setTitle("Resume Version").setValue(formValues.resume))
+    // safeString() 
+    .addWidget(CardService.newTextInput().setFieldName("deadline").setTitle("Deadline").setValue(safeString(formValues.deadline)))
     
-    .addWidget(CardService.newTextInput().setFieldName("notes").setTitle("Notes").setMultiline(true).setValue(formValues.notes));
+    .addWidget(CardService.newTextInput().setFieldName("recruiter").setTitle("Recruiter Email").setValue(safeString(formValues.recruiter)))
+    .addWidget(CardService.newTextInput().setFieldName("jd_link").setTitle("JD Link").setValue(safeString(formValues.jd_link)))
+    .addWidget(CardService.newTextInput().setFieldName("resume").setTitle("Resume Version").setValue(safeString(formValues.resume)))
+    
+    .addWidget(CardService.newTextInput().setFieldName("notes").setTitle("Notes").setMultiline(true).setValue(safeString(formValues.notes)));
 
   var action = CardService.newAction().setFunctionName("saveToSheet");
   var button = CardService.newTextButton().setText(existingRow ? "UPDATE ENTRY" : "LOG APPLICATION").setOnClickAction(action);
