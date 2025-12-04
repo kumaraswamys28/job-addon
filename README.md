@@ -40,4 +40,4 @@ A smart Gmail Add-on that automatically parses job application emails and logs t
 
 ## License
 
-This project is open-source and available for personal use.
+This project is open-source and available for personal use. 
